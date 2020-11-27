@@ -1,47 +1,8 @@
 import React, { Component } from 'react';
+import Subject from "./components/Subject";
+import Menu from "./components/Menu";
+import Content from "./components/Content";
 import './App.css';
-
-class Subject extends Component {
-  render() {
-    return (
-      <header>
-        <h1>{this.props.title}</h1>
-        <h2>
-          <a href="https://www.youtube.com/watch?v=XMb0w3KMw00&list=PLuHgQVnccGMCRv6f8H9K5Xwsdyg4sFSdi&index=1">
-          생활코딩 유튜브
-          </a>
-        </h2>
-        <h2>{this.props.sub}</h2>
-      </header>
-    );
-  }
-}
-
-class Menu extends Component {
-  render(){
-    return(
-      <nav>
-        <ul>
-          <li><a href="1.html">React</a></li>
-          <li><a href="2.html">Component</a></li>
-          <li><a href="3.html">Event</a></li>
-        </ul>
-      </nav>
-    );
-  }
-}
-
-class Content extends Component {
-  render(){
-    return(
-      <article>
-        <h2>{this.props.title}</h2>
-        <p>{this.props.article1}</p>
-        <p>{this.props.article2}</p>
-      </article>
-    );
-  }
-}
 
 class App extends Component {
   render() {
