@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 
 class Menu extends Component {
+    shouldComponentUpdate(newProps, newState) {
+      console.log('Rendering ComponentUpdate');
+      // newProps 는 menu의 props가 바뀌었을 때 새롭게 바뀐 값이 적용된다.
+      // newState 는 menu의 state가 바뀌었을 때 새롭게 바뀐 값이 적용된다.
+      if(this.props.data === newProps.data) {
+        return false;
+      }
+      return true;
+    }
     render(){
+      console.log('Rendering Menu');
       const data = this.props.data,
             lists = [];
       let i = 0;
