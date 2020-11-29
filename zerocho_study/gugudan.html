@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <h2 class="title">React : GuGuDan by gparkkii</h2>
+        <div id="root"></div>
+            <script type="text/babel">
+                class GuGuDan extends React.Component {
+                    constructor(props) {
+                        super(props);
+                        this.state = {
+                            first : Math.floor(Math.random()*9),
+                            second : Math.floor(Math.random()*9),
+                            answer : '',
+                            result : ''
+                        }
+                    }
+
+                    _onSubmit = (e) => {
+                        e.preventDefault();
+                        if( Number(this.state.answer) === this.state.first * this.state.second) {
+                            this.setState({
+                                result : '정답',
+                                first : Math.floor(Math.random()*9),
+                                second : Math.floor(Math.random()*9),
+                                answer : ''
+                            })
+                        } else {
+                            this.setState({
+                                result : '땡',
+                                answer : ''
+                            })
+                        }
+                    }
+
+                    _onChange = (e) => {
+                        this.setState({ answer : e.target.value })
+                    }
+
+                    render() {
+                        return (
+                            <div>
+                                <div> {this.state.first} * {this.state.second} = ? </div>
+                                <form onSubmit = {this._onSubmit}>
+                                    <input type="number" value = {this.state.answer} onChange = {this._onChange} />
+                                    <div> {this.state.result} </div>
+                                </form>
+                            </div>
+                        );
+                    }
+                }
+            </script>
+            <script type="text/babel">
+                ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+            </script>
+    </body>
+</html>
