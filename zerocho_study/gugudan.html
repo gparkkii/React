@@ -9,52 +9,57 @@
     <body>
         <h2 class="title">React : GuGuDan by gparkkii</h2>
         <div id="root"></div>
-            <script type="text/babel">
-                class GuGuDan extends React.Component {
-                    constructor(props) {
-                        super(props);
-                        this.state = {
-                            first : Math.floor(Math.random()*9),
-                            second : Math.floor(Math.random()*9),
-                            answer : '',
-                            result : ''
-                        }
-                    }
-
-                    _onSubmit = (e) => {
-                        e.preventDefault();
-                        if( Number(this.state.answer) === this.state.first * this.state.second) {
-                            this.setState({
-                                result : '정답',
+        <script type="text/babel">
+            class GuGuDan extends React.Component {
+                state = {
+                    first : Math.floor(Math.random()*9),
+                    second : Math.floor(Math.random()*9),
+                    answer : '',
+                    result : ''
+                }
+            
+                _onSubmit = (e) => {
+                    e.preventDefault();
+                    if( Number(this.state.answer) === this.state.first * this.state.second) {
+                        this.setState( (prevState) => {
+                            return {
+                                result : '정답 :' + prevState.answer,
                                 first : Math.floor(Math.random()*9),
                                 second : Math.floor(Math.random()*9),
                                 answer : ''
-                            })
-                        } else {
-                            this.setState({
-                                result : '땡',
-                                answer : ''
-                            })
-                        }
-                    }
-
-                    _onChange = (e) => {
-                        this.setState({ answer : e.target.value })
-                    }
-
-                    render() {
-                        return (
-                            <div>
-                                <div> {this.state.first} * {this.state.second} = ? </div>
-                                <form onSubmit = {this._onSubmit}>
-                                    <input type="number" value = {this.state.answer} onChange = {this._onChange} />
-                                    <div> {this.state.result} </div>
-                                </form>
-                            </div>
-                        );
+                            }
+                            this.input.focus();
+                        })
+                    } else {
+                        this.setState({
+                            result : '땡',
+                            answer : ''
+                        })
+                        this.input.focus();
                     }
                 }
-            </script>
+
+                _onChange = (e) => {
+                    this.setState({ answer : e.target.value })
+                }
+
+                input;
+                _onInput = (e) => {this.input = e}
+
+                render() {
+                    return (
+                        <>
+                            <div> {this.state.first} * {this.state.second} = ? </div>
+                            <form onSubmit = {this._onSubmit}>
+                                <input ref = {this._onInput} type="number" value = {this.state.answer} onChange = {this._onChange} />
+                            </form>
+                            <button type="submit" onClick = {this._onSubmit}>입력</button>
+                            <div> {this.state.result} </div>
+                        </>
+                    );
+                }
+            }
+        </script>
             <script type="text/babel">
                 ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
             </script>
