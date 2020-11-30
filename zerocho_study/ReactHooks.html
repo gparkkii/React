@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <h2 class="title">React Hooks by gparkkii</h2>
+        <div id="root"></div>
+        <script type="text/babel">
+            const ReactHooks = () => {
+                const [first, setFirst] = React.useState(Math.floor(Math.random()*9)),
+                      [second, setSecond] = React.useState(Math.floor(Math.random()*9)),
+                      [answer, setAnswer] = React.useState(''),
+                      [result, setResult] = React.useState('');
+
+                      return <div> {first} {second} {answer} {result} </div>
+            }
+        </script>
+        <script type="text/babel">
+            ReactDOM.render(<ReactHooks/>, 
+            document.querySelector('#root'));
+        </script>
+    </body>
+</html>
