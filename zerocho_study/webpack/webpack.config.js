@@ -36,8 +36,9 @@ module.exports = {
     //     new webpack.LoaderOptionsPlugin({ debug : true })
     // ],
     output : {
-    path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'dist'),
         filename: 'app.js',
+        publicPath: '/dist/'
     },
 };
 
