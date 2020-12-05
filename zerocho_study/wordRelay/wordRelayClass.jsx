@@ -37,11 +37,11 @@ class WordRelayClass extends Component {
     render() {
         return (
             <>
-                <h2> {this.state.status} </h2>
+                <h2> 끝말잇기 {this.state.status} Version </h2>
                 <div>{this.state.word}</div>
                 <form onSubmit = {this.onSubmitForm}>
                     <input ref={this.onRefInput} value = {this.state.value} onChange = {this.onChangeInput} /> 
-                    <button> 확인 </button>
+                    <button> 입력 </button>
                 </form>
                 <div>{this.state.result}</div>
             </>

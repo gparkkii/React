@@ -36,4 +36,4 @@ const WordRelayHooks = () => {
     );
 }
 
-module.exports = WordRelayHooks;
+module.exports = WordRelayHooks

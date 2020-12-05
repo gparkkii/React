@@ -4,5 +4,5 @@ const React = require("react"),
 const WordRelayClass = require("./wordRelayClass"),
       WordRelayHooks = require("./wordRelayHooks");
 
-ReactDOM.render(< WordRelayClass />, document.querySelector("#root"));
-ReactDOM.render(< WordRelayHooks />, document.querySelector("#root"));
+ReactDOM.render(<WordRelayClass />, document.querySelector("#class"));
+ReactDOM.render(<WordRelayHooks />, document.querySelector("#hooks"));
