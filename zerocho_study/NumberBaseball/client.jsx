@@ -1,9 +1,6 @@
-const React = require("react"),
-      ReactDOM = require("react-dom");
+const React = require("react");
+const ReactDOM = require("react-dom");
 
-const NumberBaseball = require("./numberBaseball");
+const NumberBaseball = require("./NumberBaseball");
 
-ReactDOM.render(
-    <NumberBaseball />,
-    document.querySelector("#root")
-);
+ReactDOM.render( <NumberBaseball />, document.querySelector("#root") );

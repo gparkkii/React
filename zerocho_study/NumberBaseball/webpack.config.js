@@ -1,16 +1,18 @@
-const path = require('path'),
-      RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const path = require('path');
+const RefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
-    name: "numberbaseball",
-    mode: "development",
+    name: 'webpack-setting',
+    mode: 'development',
     devtool: 'eval',
     resolve: {
         extensions: ['.js', '.jsx']
     },
+
     entry: {
         app: ['./client']
     },
+
     module: {
         rules: [{
             test: /\.jsx?/,
@@ -24,16 +26,16 @@ module.exports = {
             }
         }]
     },
-    plugins : [
-        new RefreshWebpackPlugin()
+    plugins: [
+        new RefreshWebpackPlugin(),
     ],
-    output : {
+    output: {
         path: path.join(__dirname, 'dist'),
         filename: 'app.js',
-        publicPath: '/dist/',
+        publicPath: '/dist/'
     },
     devServer: {
-        publicPath: '/dist/',
+        publicPath:'/dist/',
         hot: true,
-    },
-}
+    }
+};
