@@ -11,7 +11,7 @@ const GuGuDan = () => {
     const onChangeInput = (e) => {
         setValue(e.target.value);
     },    
-            onSubmitForm = (e) => {
+          onSubmitForm = (e) => {
         e.preventDefault();
         if(Number(value) === first * second) {    
             setResult(`정답 : ${value}`);
