@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .blue {color : blue;}
+            .red {color : red;}
+        </style>
+    </head>
+    <body>
+        <h2 class="title">React Component Examples</h2>
+        <div id="root"></div>
+        <script type="text/babel">
+            class HelloReact extends React.Component {
+                render() {
+                    return (
+                    <h1>Hello React!!!</h1>
+                    )
+                }
+            }
+            
+            function Show(props) {
+                return (
+                    // props로 속성값(Attribute)를 설정할 수 있다.
+                    <h3>
+                        Name is {props.name}
+                    </h3>
+                )
+            }
+
+
+            // <main> 태그는 해당 문서의 <body> 요소의 주 콘텐츠(main content)를 정의할 때 사용합니다. 
+            // <main> 요소의 콘텐츠는 해당 문서의 중심 주제 또는 주요 기능과 직접적으로 관련되어 있거나 확장되는 콘텐츠로 구성되어야 하며, 
+            // 문서 전반에 걸쳐 반복되는 내용을 포함해서는 안 됩니다.
+            // 따라서 하나의 문서에는 단 하나의 <main> 요소만이 존재해야 하며, 
+            // <main> 요소는 <article>, <aside>, <footer>, <header>, <nav> 요소의 자손 요소가 되어서는 안 됩니다.
+            function App() {
+                return(
+                    <main>
+                        <Show/>
+                        <Show name = "백근우"/>
+                        {element}
+                    </main>
+                )
+            }
+
+            //props는 Default 값도 설정가능
+            Show.defaultProps = {
+                name : "홍길동"
+            };
+
+            const element = (
+                <Show name = "박지연"/>
+            );
+            
+        </script>
+        <script type="text/babel">
+            ReactDOM.render(<App/>, document.querySelector("#root"));
+        </script>
+    </body>
+</html>
+
+
+

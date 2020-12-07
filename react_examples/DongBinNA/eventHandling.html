@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+        </style>
+    </head>
+    <body>
+
+        <h2 class="title">React EventHandling Examples</h2>
+        <div id="root"></div>
+
+        <script type="text/babel">
+
+            class EventHandling extends React.Component {
+                state = {
+                    isToggleOn : true,
+                }
+
+                handleClick() {
+                    console.log("이벤트 처리");
+                }
+
+                handleToggle = () => {
+                    // 자바스크립트는 바인딩처리가 기본설정으로 제공되지 않기 때문에 특정한 변수를 변경할 때 바인드 처리를 직접 해줘야한다.
+                    // handleClick(){}는 바인드 처리 전
+                    // 
+                    this.setState(
+                        state => ({
+                            isToggleOn: ! this.state.isToggleOn
+                        })
+                    )
+                }
+
+                render() {
+                    return (
+                        <>
+                            <div className = "font">
+                                <button onClick = {this.handleClick}>버튼</button>
+                                <br/>
+                                <button onClick = {this.handleToggle}>
+                                    {this.state.isToggleOn ? 'ON' : 'OFF'}
+                                </button>
+                            </div>
+                        </>
+                    );
+                }
+            }
+            
+        </script>
+
+        <script type="text/babel">
+            ReactDOM.render(<EventHandling/>, document.querySelector("#root"));
+        </script>
+
+    </body>
+</html>
+
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .blue {color : blue;}
+            .red {color : red;}
+        </style>
+    </head>
+    <body>
+        <h2 class="title"> React Practice </h2>
+        <div id="root"></div>
+        <script type="text/babel">
+            class HelloReact extends React.Component {
+                render() {
+                    return (
+                        <h1>Hello React!!!</h1>
+                    )
+                }
+            }
+            
+            function tick() {
+                const element = (
+                    <> 
+                        <div>
+                            현재 날짜는 [{
+                                new Date().toLocaleDateString()
+                            }]
+                            입니다.
+                        </div>
+                        <div>
+                            현재 시각은 [{
+                                new Date().toLocaleTimeString()
+                            }]
+                            입니다.
+                        </div>
+                    </>
+                );
+                //ReactDOM.render(element, document.querySelector("#root"));
+            }
+            //{setInterval(tick, 1000)}
+
+            //tick 함수보다 간단하게 만들기
+            function Clock(props) {
+                //props.date는 즉 new Date가 되어야 한다.
+                return (
+                    <h3>
+                        현재 날짜는 {[props.date.toLocaleDateString()]}
+                        <hr/>
+                        현재 시각은 {[props.time.toLocaleTimeString()]}
+                    </h3>
+                );
+            }
+            
+        </script>
+        <script type="text/babel">
+            ReactDOM.render(
+                <Clock 
+                    date = {new Date} 
+                    time = {new Date}
+                />, document.querySelector("#root"));
+        </script>
+    </body>
+</html>
+
+
+

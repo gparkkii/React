@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .blue {color : blue;}
+            .red {color : red;}
+        </style>
+    </head>
+    <body>
+        <h2 class="title">React State Examples</h2>
+        <div id="root"></div>
+        <script type="text/babel">
+            class HelloReact extends React.Component {
+                render() {
+                    return (
+                        <h1>Hello React!!!</h1>
+                    )
+                }
+            }
+
+            class Clock extends React.Component {
+                state = {
+                    date : new Date(),
+                    time : new Date(),
+                };
+
+                tick() {
+                    // state 값을 수정하고자 할 때는 setState() 함수를 이용해야 한다는 점
+                    // Time의 state값을 다시 new Date()로 업데이트 해주서 자동으로 리액트가 변경된 값을 확인하며 시간이 계속 갱신되는 것을 확인 할 수 있다.
+                    this.setState({
+                        time : new Date()
+                    })
+                }
+                // Component 초기화(mount)가 끝났을 때 자동으로 불러와지는 함수
+                componentDidMount() {
+                    this.timerID = setInterval(() => this.tick(), 1000);
+                }
+                // 리소스의 낭비를 끝내기 위해 컴포넌트가 unmount 됐을 때 cleatInterval로 해당 인터벌을 종료할 수 있도록 도와주기
+                componentWillUnmount() {
+                    clearInterval(this.timerID);
+                }
+                
+                render() {
+                    return (
+                        <h3>
+                        현재 날짜는 {[this.state.date.toLocaleDateString()]}
+                        <hr/>
+                        현재 시각은 {[this.state.time.toLocaleTimeString()]}
+                        </h3>
+                    );
+                }
+            }
+            
+        </script>
+        <script type="text/babel">
+            ReactDOM.render(<Clock/>, document.querySelector("#root"));
+        </script>
+    </body>
+</html>
+
+
+

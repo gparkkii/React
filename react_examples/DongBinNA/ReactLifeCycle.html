@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .font {
+                font-size: 16px;
+                font-family: 'Apple SD Gothic';
+                font-weight: normal;
+                line-height: 24px;
+            }
+
+            .example {
+                color : blue;
+            }
+
+            .api {
+                color: red;
+                font-size: 24px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h2 class="title">React API Examples</h2>
+        <div id="root"></div>
+
+        <script type="text/babel">
+
+            class ApiExamples extends React.Component {
+                state = {
+                    data: '',
+                }
+
+                callApi = () => {
+                    fetch('https://jsonplaceholder.typicode.com/todos/1')
+                    .then(response => response.json())
+                    .then(json => {
+                        this.setState({
+                            data: json.title,
+                            id: this.id,
+                        });
+                    });
+                }
+                //특정한 API를 호출할땐 무조건 componentDidMount()에서 불러오기
+                componentDidMount() {
+                    //클래스 내부에서 정의되어있기 때문에 무조건 this를 붙여줘야한다.
+                    this.callApi();
+                    //클래스형 컴포넌트는 반드시 render()를 가진다.
+                }
+
+                render() {
+                    return (
+                        <>
+                            <div className = "font">
+                                componentDidMount 보다 render가 먼저 불려지기 때문에 <br/>
+                                서버로부터 데이터를 전달받기 전 비어있는 데이터가 불러와지다가 <br/>
+                                api를 통해 데이터를 불러왔을 때 데이터가 갱신되기 때문에 <br/>
+                                현재 데이터가 비어있을 때, 비어있지 않을 때를 render함수로 명시해 줘야한다. <br/>
+                                <p className = "example">for example) `this.state.data? this.state.data : '데이터를 불러오는 중입니다.'`</p>
+                                <hr/>
+                                <p className = "api">
+                                    {this.state.data ? this.state.data : '데이터를 불러오는 중입니다.'}
+                                </p>
+                            </div>
+                        </>
+                    );
+                }
+            }
+            
+        
+            
+        </script>
+
+        <script type="text/babel">
+            ReactDOM.render(<ApiExamples/>, document.querySelector("#root"));
+        </script>
+
+    </body>
+</html>
+
+
+
