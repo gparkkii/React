@@ -34,12 +34,10 @@ const MapContainer = ({ searchPlaces }) => {
                 // 검색된 장소 위치를 기준으로 지도 범위를 재설정
                 map.setBounds(bounds);
             } 
-        }
-
+        } 
 
         // 지도에 마커를 표시하는 함수
         function displayMarker(place) {
-            
             // 마커를 생성하고 지도에 표시
             let marker = new kakao.maps.Marker({
                 map: map,
@@ -53,7 +51,6 @@ const MapContainer = ({ searchPlaces }) => {
                 infowindow.open(map, marker);
             });
         }
-
 
     }, [searchPlaces])
 
