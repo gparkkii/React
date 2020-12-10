@@ -1,39 +1,21 @@
 {
-  "name": "customer_management",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.11.2",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "management",
+    "version": "1.0.0",
+    "description": "'client' 폴더에서는 react를, 'management' 폴더에서는 node.js를 실행시키도록 명시해주는 package.json 파일입니다.",
+    "scripts": {
+        "client": "cd client && yarn start", //client 폴더로 이동한다음 yarn start를 통해 실행
+        "server": "nodemon server.js", //서버는 server.js 파일을 실행시키도록 한다.
+        "dev": "concurrently --kill-others-on-fail 'yarn server' 'yarn client'"
+        // 개발환경을 시작할 때 서버와 클라이언트 두개를 실행시킴으로써 리액트와 노드js 둘다 실행 가능하게 한다.
+    },
+
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.4"
+    },
+    "devDependencies": {
+        "concurrently": "^4.0.1"
+    }
 }
+
+
