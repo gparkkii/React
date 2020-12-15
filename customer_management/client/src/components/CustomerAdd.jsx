@@ -2,15 +2,48 @@ import React from 'react';
 import { post } from 'axios';
 
 class CustomerAdd extends React.Component {
-    state = {
-        file: null,
-        userName: '',
-        age: '',
-        birthday: '',
-        job: '',
-        filename: '', 
+    constructor(props) {
+        super(props);
+        this.state = {
+            file: null,
+            userName: '',
+            age: '',
+            birthday: '',
+            job: '',
+            fileName: '', 
+        }
     }
 
+    handleFormSubmit = (e) => {
+        e.preventDefault()
+        this.addCustomer()
+            .then((response) => {
+                console.log(response.data);
+                this.props.stateRefresh();
+            })
+        this.setState({
+            file: null,
+            userName: '',
+            age: '',
+            birthday: '',
+            job: '',
+            fileName: '',
+        })
+    }
+
+    handleFileChange = (e) => {
+        this.setState({
+            file: e.target.files[0], //files에서 1개만 전송할 수 있게
+            fileName: e.target.value
+        })
+    }
+
+    handleValueChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+    }
+    
     addCustomer = () => {
         const url = '/api/customers',
               formData = new FormData();
@@ -29,29 +62,7 @@ class CustomerAdd extends React.Component {
         }
         return post(url, formData, config);
     }
-
-    handleFormSubmit = (e) => {
-        e.preventDefault()
-        this.addCustomer()
-            .then((response) => {
-                console.log(response.data);
-            })
-    }
-
-    handleFileChange = (e) => {
-        this.setState({
-            file: e.target.files[0], //files에서 1개만 전송할 수 있게
-            fileName: e.target.value
-        })
-    }
-
-    handleValueChange = (e) => {
-        let nextState = {};
-        nextState[e.target.userName] = e.target.value;
-        this.setState(nextState);
-    }
-
-
+    
     render() {
         return(
             <form onSubmit= {this.handleFormSubmit}>
@@ -75,7 +86,7 @@ class CustomerAdd extends React.Component {
                 </div>
                 <div>나이: 
                     <input 
-                        type="number" 
+                        type="text" 
                         name="age" 
                         value= {this.state.age} 
                         onChange= {this.handleValueChange} 
@@ -83,7 +94,7 @@ class CustomerAdd extends React.Component {
                 </div>
                 <div>생년월일: 
                     <input 
-                        type="number" 
+                        type="text" 
                         name="birthday" 
                         value= {this.state.birthday} 
                         onChange= {this.handleValueChange} 

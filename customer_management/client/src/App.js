@@ -26,9 +26,23 @@ const styles = theme => ({
 })
 
 class App extends Component {
-  state = {
-    customers: "",
-    completed: 0,
+  constructor(props) {
+    super(props);
+    this.state = {
+      customers: "",
+      completed: 0,
+    }
+  }
+  
+
+  stateRefresh = () => {
+    this.setState({
+      customers: '',
+      completed: 0
+    });
+    this.callApi()
+      .then(res => this.setState({customers: res}))
+      .catch(err => console.log(err));
   }
 
   // api 서버에 접근을 해서 데이터틑 받아오는 작업은 componentDidMount()
@@ -64,12 +78,14 @@ class App extends Component {
               <TableCell>나이</TableCell>
               <TableCell>생년월일</TableCell>
               <TableCell>직업</TableCell>
+              <TableCell>설정</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {this.state.customers ? this.state.customers.map( i => {
                 return (
                   <Customer
+                    stateRefresh = {this.stateRefresh}
                     key = {i.id}
                     id = {i.id}
                     image = {i.image}
@@ -89,7 +105,7 @@ class App extends Component {
           </TableBody>
         </Table>
       </Paper>
-      <CustomerAdd/>
+      <CustomerAdd stateRefresh= {this.stateRefresh} />
       </>
     );
   }
