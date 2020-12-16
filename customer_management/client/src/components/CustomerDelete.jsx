@@ -4,11 +4,11 @@ class CustomerDelete extends React.Component{
 
     deleteCustomer(id) {
         const url = '/api/customers/' + id;
+        console.log(id,url);
         fetch(url, {
             method: 'DELETE'
-        }).then(
-            res => this.props.stateRefresh(res)
-        );
+        });
+        this.props.stateRefresh();
     }
 
     render(){
