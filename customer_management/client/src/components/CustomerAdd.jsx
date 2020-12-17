@@ -1,5 +1,19 @@
 import React from 'react';
 import { post } from 'axios';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+    hidden: {
+        display: 'none'
+    }
+})
+
 
 class CustomerAdd extends React.Component {
     constructor(props) {
@@ -11,6 +25,7 @@ class CustomerAdd extends React.Component {
             birthday: '',
             job: '',
             fileName: '', 
+            open: false,
         }
     }
 
@@ -28,6 +43,7 @@ class CustomerAdd extends React.Component {
             birthday: '',
             job: '',
             fileName: '',
+            open: false,
         })
     }
 
@@ -62,56 +78,139 @@ class CustomerAdd extends React.Component {
         }
         return post(url, formData, config);
     }
-    
+
+    handleOpen = () => {
+        this.setState({
+            open: true
+        });
+    }
+
+    handleClose = () => {
+        this.setState({
+            file: null,
+            userName: '',
+            age: '',
+            birthday: '',
+            job: '',
+            fileName: '', 
+            open: false,
+        });
+    }
+
     render() {
+        const { classes } = this.props;
         return(
-            <form onSubmit= {this.handleFormSubmit}>
-                <h2>고객추가</h2>
-                <div>프로필 이미지: 
-                    <input 
-                        type="file" 
-                        name="file" 
-                        file = {this.state.file} 
-                        value= {this.state.fileName} 
-                        onChange= {this.handleFileChange} 
-                    />
-                </div>
-                <div>이름: 
-                    <input 
-                        type="text" 
-                        name="userName" 
-                        value= {this.state.userName} 
-                        onChange= {this.handleValueChange} 
-                    />
-                </div>
-                <div>나이: 
-                    <input 
-                        type="text" 
-                        name="age" 
-                        value= {this.state.age} 
-                        onChange= {this.handleValueChange} 
-                    />
-                </div>
-                <div>생년월일: 
-                    <input 
-                        type="text" 
-                        name="birthday" 
-                        value= {this.state.birthday} 
-                        onChange= {this.handleValueChange} 
-                    />
-                </div>
-                <div>직업: 
-                    <input 
-                        type="text" 
-                        name="job" 
-                        value= {this.state.job} 
-                        onChange= {this.handleValueChange} 
-                    />
-                </div>
-                <button type="submit">추가하기</button>
-            </form>
+            <div ref={this.wrapper}>
+                <Button variant="contained" color="primary" onClick= {this.handleOpen}>
+                    고객 추가하기
+                </Button>
+                <Dialog open={this.state.open} onClose= {this.handleClose}>
+                    <DialogTitle>고객추가</DialogTitle>
+                    <DialogContent>
+                        <input 
+                            className= {classes.hidden}
+                            accept="image/*"
+                            id="raised_button_file"
+                            type="file" 
+                            file = {this.state.file} 
+                            value= {this.state.fileName} 
+                            onChange= {this.handleFileChange} 
+                        />
+                        <label htmlFor="raised_button_file">
+                            <Button variant="contained" component="span" color="primary" name="file">
+                                {this.state.fileName === "" ? "프로필 이미지 선택" : this.state.fileName}
+                            </Button>
+                        </label>
+                        <br/>
+                        <TextField 
+                            label="이름"
+                            type="text" 
+                            name="userName" 
+                            value= {this.state.userName} 
+                            onChange= {this.handleValueChange} 
+                        />
+                        <br/>
+                        <TextField 
+                            label="나이"
+                            type="text" 
+                            name="age" 
+                            value= {this.state.age} 
+                            onChange= {this.handleValueChange} 
+                        />
+                        <br/>
+                        <TextField 
+                            label="생년월일"
+                            type="text" 
+                            name="birthday" 
+                            value= {this.state.birthday} 
+                            onChange= {this.handleValueChange} 
+                        />
+                        <br/>
+                        <TextField 
+                            label="직업"
+                            type="text" 
+                            name="job" 
+                            value= {this.state.job} 
+                            onChange= {this.handleValueChange} 
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>
+                            추가하기
+                        </Button>
+                        <Button variant="outlined" color="primary" onClick={this.handleClose}>
+                            닫기
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+                {/* <form onSubmit= {this.handleFormSubmit}>
+                    <h2>고객추가</h2>
+                    <div>프로필 이미지: 
+                        <input 
+                            type="file" 
+                            name="file" 
+                            file = {this.state.file} 
+                            value= {this.state.fileName} 
+                            onChange= {this.handleFileChange} 
+                        />
+                    </div>
+                    <div>이름: 
+                        <input 
+                            type="text" 
+                            name="userName" 
+                            value= {this.state.userName} 
+                            onChange= {this.handleValueChange} 
+                        />
+                    </div>
+                    <div>나이: 
+                        <input 
+                            type="text" 
+                            name="age" 
+                            value= {this.state.age} 
+                            onChange= {this.handleValueChange} 
+                        />
+                    </div>
+                    <div>생년월일: 
+                        <input 
+                            type="text" 
+                            name="birthday" 
+                            value= {this.state.birthday} 
+                            onChange= {this.handleValueChange} 
+                        />
+                    </div>
+                    <div>직업: 
+                        <input 
+                            type="text" 
+                            name="job" 
+                            value= {this.state.job} 
+                            onChange= {this.handleValueChange} 
+                        />
+                    </div>
+                    <button type="submit">추가하기</button>
+                </form> */}
+            </div>
         )
     }
 }
 
-export default CustomerAdd;
+export default withStyles(styles)(CustomerAdd);
