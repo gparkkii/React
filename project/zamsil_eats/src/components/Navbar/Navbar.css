@@ -1,0 +1,46 @@
+li {list-style: none;}
+
+.navbar{
+    background: #f2292a;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.navbar-logo{
+    justify-self: start;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.nav-menu{  
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 20px;
+    gap: 20px;
+    text-align: center;
+    width: 50vw;
+    justify-content: end;
+    margin-right:2rem;
+}
+
+.nav-links{
+    color: white;
+    padding: 0.5rem 1rem;
+}
+
+.nav-sign-in{
+    cursor:pointer;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid #ea7266;
+    border-radius: 2px;
+    color: white;
+    font-size: 18px;
+}
+
