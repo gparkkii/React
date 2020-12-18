@@ -163,51 +163,6 @@ class CustomerAdd extends React.Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                {/* <form onSubmit= {this.handleFormSubmit}>
-                    <h2>고객추가</h2>
-                    <div>프로필 이미지: 
-                        <input 
-                            type="file" 
-                            name="file" 
-                            file = {this.state.file} 
-                            value= {this.state.fileName} 
-                            onChange= {this.handleFileChange} 
-                        />
-                    </div>
-                    <div>이름: 
-                        <input 
-                            type="text" 
-                            name="userName" 
-                            value= {this.state.userName} 
-                            onChange= {this.handleValueChange} 
-                        />
-                    </div>
-                    <div>나이: 
-                        <input 
-                            type="text" 
-                            name="age" 
-                            value= {this.state.age} 
-                            onChange= {this.handleValueChange} 
-                        />
-                    </div>
-                    <div>생년월일: 
-                        <input 
-                            type="text" 
-                            name="birthday" 
-                            value= {this.state.birthday} 
-                            onChange= {this.handleValueChange} 
-                        />
-                    </div>
-                    <div>직업: 
-                        <input 
-                            type="text" 
-                            name="job" 
-                            value= {this.state.job} 
-                            onChange= {this.handleValueChange} 
-                        />
-                    </div>
-                    <button type="submit">추가하기</button>
-                </form> */}
             </div>
         )
     }

@@ -7,7 +7,7 @@ class Customer extends React.Component {
     render() {
         return(
             <>
-                <TableRow>
+                <TableRow key={this.props.id} >
                     <TableCell>{this.props.id}</TableCell>
                     <TableCell><img src = {this.props.image} alt = "profile" style={{width: 120, height:120}}/></TableCell>
                     <TableCell>{this.props.name}</TableCell>
@@ -21,47 +21,6 @@ class Customer extends React.Component {
     }
 }
 
-
-
-
-
-// class Customer extends React.Component {
-//     render() {
-//         return(
-//             <>
-//                 <div>
-//                     <CustomerProfile image = {this.props.image} name = {this.props.name} id = {this.props.id}/>
-//                     <CustomerInfo age = {this.props.age} birthday = {this.props.birthday} job = {this.props.job}/>
-//                 </div>
-//             </>
-//         ) 
-//     }
-// }
-// class CustomerProfile extends React.Component {
-//     render() {
-//         return (
-//             <>
-//                 <div>
-//                     <img src = {this.props.image} alt = "profile" />
-//                     <h2>{this.props.name}({this.props.id})</h2>
-//                 </div>
-//             </>
-//         )
-//     }
-// }
-// class CustomerInfo extends React.Component {
-//     render() {
-//         return (
-//             <>
-//                 <div>
-//                     <p> {this.props.age} </p>
-//                     <p> {this.props.birthday} </p>
-//                     <p> {this.props.job} </p>
-//                 </div>
-//             </>
-//         )
-//     }
-// }
 export default Customer;
 
 
