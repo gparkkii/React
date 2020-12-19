@@ -7,7 +7,7 @@ class Customer extends React.Component {
     render() {
         return(
             <>
-                <TableRow key={this.props.id} >
+                <TableRow>
                     <TableCell>{this.props.id}</TableCell>
                     <TableCell><img src = {this.props.image} alt = "profile" style={{width: 120, height:120}}/></TableCell>
                     <TableCell>{this.props.name}</TableCell>

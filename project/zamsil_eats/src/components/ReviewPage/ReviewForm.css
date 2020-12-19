@@ -1,0 +1,52 @@
+.review-form{
+    max-width: 1200px;
+    padding: 24px;
+    margin: 0 auto;
+    margin: 25px 40px 0px 40px;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.form-profile{
+    width: 20%;
+    float: left;
+}
+
+.form-img img{
+    border-radius: 50%;
+}
+
+.form-review{
+    width: 80%;
+    text-align: left;
+    float: right;
+}
+
+@media(max-width: 768px){
+    .form-profile{
+        width: 100%;
+    }
+    
+    .form-profile span{
+        float: left;
+    }
+    
+    .form-userbox{
+        height: 100%;
+        margin-left: 24px;
+        margin-bottom: 24px;
+    }
+
+    .form-img img{
+        width: 48px;
+        height: 48px;
+    }
+
+    .form-rating{
+        text-align: left;
+    }
+
+    .form-review{
+        width: 100%;
+    }
+}
