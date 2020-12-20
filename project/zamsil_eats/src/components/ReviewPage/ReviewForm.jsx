@@ -16,7 +16,6 @@ class ReviewForm extends React.Component {
                         </span>
                     </div>
                     <div className="form-review">
-                        <h2 className="form-title">{this.props.title}</h2>
                         <p className="form-content">{this.props.content}</p>
                         <p className="form-posted"><span>작성일:</span>{this.props.posted}</p>
                     </div>

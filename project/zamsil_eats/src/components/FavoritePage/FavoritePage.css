@@ -61,24 +61,23 @@ body{
     margin: 0 auto;
 }
 
-.review-header{
+.fav-header{
     height: 80px;
-    margin: 10px 25px 25px 25px;
+    margin: 10px;
     border-bottom: 1px solid #eaeaea;
 }
 
-.review-title{
-    margin-left: 16px;
+.fav-title{
     float: left;
 }
 
-.review{
+.fav-title h2{
     display: inline-block;
     font-size: 24px;
     line-height: 80px;
 }
 
-.review-number{
+.fav-title p{
     display: inline-block;
     margin-left: 8px;
 
@@ -86,50 +85,4 @@ body{
     font-size: 24px;
     font-weight: bold;
     line-height: 80px;
-}
-
-.review-btn{
-    background-color: #fc8621;
-    color: white;
-    width: 120px;
-    height: 48px;
-    margin: 16px;
-    border-radius: 2px;
-    font-size: 16px;
-    line-height: 48px;
-    float: right;
-}
-
-.search-form{
-    max-width: 1200px;
-    height: 40px;
-    margin: 0px 40px 0px 40px;
-    border: 1px solid #dddddd;
-    border-radius: 2px;
-}
-
-.search-icon{
-    height: 40px;
-    margin-right: 24px;
-    float: right;
-}
-
-.search-icon:after{
-    display: inline-block;
-    height: 100%;
-    content: "";
-    vertical-align: middle;
-}
-
-.search-icon img{
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-}
-
-.review-search{
-    width: 80%;
-    padding-left: 24px;
-    line-height: 40px;
-    float: left;
 }

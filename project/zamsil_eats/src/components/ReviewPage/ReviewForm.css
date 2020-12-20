@@ -16,10 +16,20 @@
     border-radius: 50%;
 }
 
+.form-user{
+    font-size: 20px;
+}
+
 .form-review{
     width: 80%;
+    font-size: 16px;
+    line-height: 22px;
     text-align: left;
     float: right;
+}
+
+.form-posted{
+    margin-top: 12px;
 }
 
 @media(max-width: 768px){

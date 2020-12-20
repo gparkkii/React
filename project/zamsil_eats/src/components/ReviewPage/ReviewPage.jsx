@@ -1,8 +1,8 @@
 import React from 'react';
 import './ReviewPage.css';
 import searchIcon from './search-icon.svg';
-import Review from './Review.jsx';
-import ReviewModal from './ReviewModal.jsx'
+import Review from './Review';
+import ReviewModal from './ReviewModal';
 
 class ReviewPage extends React.Component {
 

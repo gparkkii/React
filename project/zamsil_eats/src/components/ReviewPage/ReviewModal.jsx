@@ -1,6 +1,7 @@
 import React from 'react';
 // import ModalInput from './ModalInput.jsx'
 import './ReviewModal.css';
+import StarRatings from './StarRatings';
 
 const ReviewModal = ({isOpen, close}) => {
     return(
@@ -10,15 +11,23 @@ const ReviewModal = ({isOpen, close}) => {
                     <div className="modal-overlay" onClick={close} />
                     <div className="modal">
                         <div className="modal-header">
-                            <p className="modal-title">리뷰 작성</p>
+                            <div className="modal-info">
+                                <img className="info-img" src="https://placeimg.com/60/60/1" alt="profile"/>
+                                <div className="info-title">
+                                    <h2>큰집 닭강정</h2>
+                                    <p>평균 별점 : 4.7</p>
+                                </div>
+                            </div>
                             <button className="modal-close" onClick={close}>닫기</button>
                         </div>
-                        <div className="modal-content">
-                            <h2>이 음식점에 대한 전반적인 평가</h2>
-                            <input type="text" placeholder="리뷰 제목"/>
-                            <br/>
-                            <input type="text" placeholder="리뷰 내용"/>
-                        </div>
+                        <form className="modal-content">
+                            <h2> 나의 별점은?</h2>
+                            <div className="star-rating">
+                                <StarRatings/>
+                            </div>
+                            <p>리뷰 내용</p>
+                            <textarea className="modal-textarea" placeholder="평가는 익명으로 등록됩니다. 솔직한 후기를 남겨주세요."/>
+                        </form>
                         <div className="modal-button">
                             <button onClick={close}>리뷰 등록하기</button>
                         </div>
