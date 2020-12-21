@@ -54,27 +54,28 @@ body{
     height: 100vh;
 }
 
+/* REVIEWPAGE CSS */
+
 .container{
-    max-width: 1200px;
+    max-width: 800px;
     height: 100vh;
-    margin: 0px 40px 0px 40px;
     margin: 0 auto;
 }
 
-.review-header{
+.reviewpage-header{
     height: 80px;
-    margin: 10px 25px 25px 25px;
+    margin: 20px 10px;
     border-bottom: 1px solid #eaeaea;
 }
 
-.review-title{
+.reviewpage-title{
     margin-left: 16px;
     float: left;
 }
 
-.review{
+.review-title{
     display: inline-block;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 80px;
 }
 
@@ -83,7 +84,7 @@ body{
     margin-left: 8px;
 
     color: #757575;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     line-height: 80px;
 }
@@ -91,20 +92,24 @@ body{
 .review-btn{
     background-color: #fc8621;
     color: white;
-    width: 120px;
-    height: 48px;
-    margin: 16px;
+    width: 100px;
+    height: 40px;
+    margin: 20px;
     border-radius: 2px;
-    font-size: 16px;
-    line-height: 48px;
+    font-size: 14px;
+    line-height: 40px;
     float: right;
 }
 
-.search-form{
-    max-width: 1200px;
+.review-searchbox{
+    max-width: 800px;
     height: 40px;
-    margin: 0px 40px 0px 40px;
-    border: 1px solid #dddddd;
+    padding: 0px 24px;
+    margin: 0 auto;
+}
+
+.search-form{
+    border: 1px solid #ddd;
     border-radius: 2px;
 }
 
@@ -132,4 +137,190 @@ body{
     padding-left: 24px;
     line-height: 40px;
     float: left;
+}
+
+/* ReviewForm CSS */
+.review-container{
+    max-width: 800px;
+    padding: 24px;
+    margin: 0 auto;
+}
+
+.review-form{
+    max-width: 800px;
+    padding: 25px 10px;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.review-userbox{
+    display: flex;
+    height: 100%;
+    margin-bottom: 24px;
+}
+
+.user-img img{
+    width: 48px;
+    height: 48px;
+    margin: auto 0;
+    border-radius: 50%;
+}
+
+.review-user-wrapper{
+    display: flex;
+    flex-direction: column;
+    padding-left: 12px;
+    margin: auto 0;
+}
+
+.review-user-top{
+    display: flex;
+}
+
+.review-user{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.review-posted{
+    padding-left: 10px;
+    color: #757575;
+    font-size: 16px;
+
+}
+
+.review-user-bottom{
+    display: flex;
+}
+
+.review-rating{
+    font-size: 14px;
+    text-align: left;
+}
+
+.review-rating span{
+    color: #757575;
+}
+
+.review-contentbox{
+    width: 100%;
+    margin-left: 0px;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: left;
+}
+
+/* ReviewModal CSS */
+
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.7);
+}
+.modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40vw;
+    min-width: 345px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+}
+
+.modal-header{
+    width: 100%;
+    height: 148px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.modal-info{
+    padding:24px;
+    float: left;
+}
+
+.info-img{
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+.info-title{
+    padding-top: 12px;
+    margin-left: 12px;
+    float: left;
+}
+
+.info-title h2{
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.info-title p{
+    font-size: 16px;
+}
+
+.modal-close{
+    color: #999999;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 24px;
+    float: right;
+}
+
+.modal-content{
+    padding: 24px;
+    text-align: left;
+}
+
+.modal-content h2{
+    font-size: 18px;
+    margin-left: 2px;
+    margin-bottom: 4px;
+    color: #212121;
+}
+
+.star-rating{
+    margin-bottom: 10px;
+}
+
+.modal-content p{
+    margin: 16px 0px 10px 2px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #212121;
+}
+
+.modal-textarea{
+    resize: none;
+    width: 100%;
+    height: 120px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: start;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 2px 0 rgba(50,50,50,0.2);
+    box-sizing: border-box;
+}
+
+.modal-button{
+    width: 100%;
+    height: 48px;
+    border-radius: 0 0 10px 10px;
+    background-color: #f2292a;
+}
+
+.modal-button button{
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    line-height: 48px;
+    color: white;
 }

@@ -25,9 +25,9 @@ class ReviewPage extends React.Component {
         return(
             <>
                 <div className="container">
-                    <div className="review-header clearfix">
-                        <div className="review-title">
-                            <h2 className="review">모든 리뷰</h2>
+                    <div className="reviewpage-header">
+                        <div className="reviewpage-title">
+                            <h2 className="review-title">모든 리뷰</h2>
                             <p className="review-number">(1,207)</p>
                         </div>
                         <button className="review-btn" onClick= {this.openModal}>
@@ -35,12 +35,14 @@ class ReviewPage extends React.Component {
                         </button>
                         <ReviewModal isOpen={this.state.isModalOpen} close = {this.closeModal}/>
                     </div>
-                    <form className="search-form clearfix">
-                        <span className="search-icon">
-                            <img src={searchIcon} alt="search" />
-                        </span>
-                        <input className="review-search" type="text" placeholder="리뷰를 검색하세요" />
-                    </form>
+                    <div className="review-searchbox">
+                        <form className="search-form clearfix">
+                            <span className="search-icon">
+                                <img src={searchIcon} alt="search" />
+                            </span>
+                            <input className="review-search" type="text" placeholder="리뷰를 검색하세요" />
+                        </form>
+                    </div>
                     <Review></Review>
                 </div>
             </>

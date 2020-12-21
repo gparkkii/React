@@ -1,7 +1,6 @@
 import React from 'react';
 // import ModalInput from './ModalInput.jsx'
-import './ReviewModal.css';
-import StarRatings from './StarRatings';
+import ModalInput from './ModalInput';
 
 const ReviewModal = ({isOpen, close}) => {
     return(
@@ -20,17 +19,7 @@ const ReviewModal = ({isOpen, close}) => {
                             </div>
                             <button className="modal-close" onClick={close}>닫기</button>
                         </div>
-                        <form className="modal-content">
-                            <h2> 나의 별점은?</h2>
-                            <div className="star-rating">
-                                <StarRatings/>
-                            </div>
-                            <p>리뷰 내용</p>
-                            <textarea className="modal-textarea" placeholder="평가는 익명으로 등록됩니다. 솔직한 후기를 남겨주세요."/>
-                        </form>
-                        <div className="modal-button">
-                            <button onClick={close}>리뷰 등록하기</button>
-                        </div>
+                        <ModalInput close={close}/>
                     </div>
                 </>
             : null
