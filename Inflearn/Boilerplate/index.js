@@ -11,10 +11,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 
-
+const config = require('./config/key');
 const mongoose = require("mongoose");
 mongoose.connect(
-    "mongodb+srv://user:user1234@boilerplate.7cib8.mongodb.net/BoilerPlate?retryWrites=true&w=majority",
+    config.mongoURI,
     { 
         useNewUrlParser: true, 
         useUnifiedTopology: true, 
