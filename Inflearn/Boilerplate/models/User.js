@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const userSchema = mongoose.Schema({
     name: {
         type: String,
@@ -28,6 +27,36 @@ const userSchema = mongoose.Schema({
     },
     tokenExpiration: {
         type: Number, // tokenExp: token 사용의 유효기간
+    }
+})
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+// salt를 이용해서 비밀번호를 먼저 암호화 한다. saltRounds는 salt의 자릿수를 얘기하는 것
+
+//pre()는 몽구스 메서드
+//pre('save', function()) 유저모델에 유저 정보를 저장하기 전에!! 이 함수를 실행시키겠다는 뜻이다.
+//next 인자는 바로 register route로 보내주는 기능이다.
+userSchema.pre('save', function( next ){
+    const user = this;
+
+    //email이나 이름을 바꿀 경우에도 암호화를 진행하면 안되기때문에 비밀번호를 바꿀 때만 암호화를 진행할 수 있는 조건 넣어주기
+    if(user.isModified('password')){
+        // 비밀번호 암호화
+        bcrypt.genSalt(saltRounds,function(err, salt){
+            if(err) return next(err);
+            //에러가 나면 바로 register route로 넘어가서 에러 처리하기
+
+            //hash가 암호화된 비밀번호를 뜻한다.
+            bcrypt.hash(user.password, salt, function(err, hash){
+                if(err) return next(err);
+                user.password = hash;
+                next();
+            })
+        })
+    } else {
+        //비밀번호를 암호화하지 않을 경우엔 바로 register route로 넘어갈 수 있도록
+        next();
     }
 })
 
