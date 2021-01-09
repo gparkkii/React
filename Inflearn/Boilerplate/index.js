@@ -3,9 +3,8 @@ const mongoose = require("mongoose");
 const config = require('./config/key');
 const app = express();
 const port = 5000;
-const {
-    User
-} = require('./models/User');
+const { auth } = require('./middleware/auth');
+const { User } = require('./models/User');
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -32,7 +31,7 @@ app.get('/', (req, res) => {
 })
 
 // Register Route 생성코드
-app.post('/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
 
     const user = new User(req.body)
 
@@ -47,7 +46,8 @@ app.post('/register', (req, res) => {
     })
 })
 
-app.post('/login', (req, res) => {
+// Login Route 생성코드
+app.post('/api/users/login', (req, res) => {
     // 요청된 이메일이 데이터베이스에 있는지 찾는다.
     User.findOne({ email: req.body.email }, (err, user) => {
         console.log('user', user);
@@ -69,12 +69,41 @@ app.post('/login', (req, res) => {
             user.generateToken((err, user) => {
                 if(err) return res.status(400).send(err);
                 // token을 cookie에 저장하기
-                res.cookie("x_auth", user.token)
+                res.cookie('x_auth', user.token)
                 .status(200)
                 .json({ loginSuccess: true, userId: user._id })
             })
         })
     })
+})
+
+// Auth Route 생성코드
+app.get('/api/users/auth', auth , (req, res) => {
+    //여기까지 미들웨어를 통과해서 넘어온 정보들은 Authentication이 True라는 뜻이다.
+    res.status(200).json({   
+        _id: req.user._id,
+        isAdmin: req.user.role === 0 ? false : true,
+        isAuth: true,
+        email: req.user.email,
+        name: req.user.name,
+        lastname: req.user.lastname,
+        role: req.user.role,
+        image: req.user.image
+    })
+})
+
+// LogOut Route 생성코드
+app.get('/api/users/logout', auth, (req, res) => {
+    User.findOneAndUpdate(
+        { _id: req.user._id }, 
+        { token: ""},
+        (err, user) => {
+            if(err) return res.json({ success: false, err});
+            return res.status(200).send({ 
+                success: true
+            })
+        }
+    )
 })
 
 app.listen(port, () => {
