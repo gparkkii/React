@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const User = mongoose.model('User', userSchema);
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -34,6 +33,8 @@ const userSchema = mongoose.Schema({
         type: Number, // tokenExp: token 사용의 유효기간
     }
 })
+
+const User = mongoose.model('User', userSchema);
 
 
 // salt를 이용해서 비밀번호를 먼저 암호화 한다. saltRounds는 salt의 자릿수를 얘기하는 것
@@ -82,6 +83,8 @@ userSchema.methods.generateToken = function(callback) {
         callback(null, user)
     })
 }
+
+
 
 module.exports = {
     User
