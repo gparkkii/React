@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 
 const userSchema = mongoose.Schema({
@@ -34,8 +34,6 @@ const userSchema = mongoose.Schema({
     }
 })
 
-const User = mongoose.model('User', userSchema);
-
 
 // salt를 이용해서 비밀번호를 먼저 암호화 한다. saltRounds는 salt의 자릿수를 얘기하는 것
 
@@ -43,7 +41,7 @@ const User = mongoose.model('User', userSchema);
 //pre('save', function()) 유저모델에 유저 정보를 저장하기 전에!! 이 함수를 실행시키겠다는 뜻이다.
 //next 인자는 바로 register route로 보내주는 기능이다.
 userSchema.pre('save', function (next) {
-    const user = this;
+    var user = this;
 
     //email이나 이름을 바꿀 경우에도 암호화를 진행하면 안되기때문에 비밀번호를 바꿀 때만 암호화를 진행할 수 있는 조건 넣어주기
     if (user.isModified('password')) {
@@ -66,25 +64,25 @@ userSchema.pre('save', function (next) {
 })
 
 userSchema.methods.comparePassword = function(plainPassword, callback) {
-    //ex) plainPassword = 123456 / 암호화된 비밀번호 = 23748975987125351
     bcrypt.compare(plainPassword, this.password, function(err, isMatch) {
-        if(err) return callback(err),
-        callback(null, isMatch)
+        if (err) return callback(err);
+        callback(null, isMatch);
     })
 }
 
 userSchema.methods.generateToken = function(callback) {
-    const user = this;
+    var user = this;
     //Json Web Token을 이용해서 Token 생성하기
-    const token = jwt.sign(user._id, 'secretToken');
+    var token = jwt.sign(user._id.toHexString(), 'secretToken');
     user.token = token;
     user.save(function(err, user) {
-        if(err) return callback(err)
-        callback(null, user)
+        if (err) return callback(err);
+        callback(null, user);
     })
 }
 
 
+const User = mongoose.model('User', userSchema);
 
 module.exports = {
     User
