@@ -1,4 +1,9 @@
 const mongoose = require('mongoose');
+const User = mongoose.model('User', userSchema);
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 const userSchema = mongoose.Schema({
     name: {
         type: String,
@@ -30,8 +35,7 @@ const userSchema = mongoose.Schema({
     }
 })
 
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+
 // salt를 이용해서 비밀번호를 먼저 암호화 한다. saltRounds는 salt의 자릿수를 얘기하는 것
 
 //pre()는 몽구스 메서드
@@ -60,7 +64,24 @@ userSchema.pre('save', function (next) {
     }
 })
 
-const User = mongoose.model('User', userSchema);
+userSchema.methods.comparePassword = function(plainPassword, callback) {
+    //ex) plainPassword = 123456 / 암호화된 비밀번호 = 23748975987125351
+    bcrypt.compare(plainPassword, this.password, function(err, isMatch) {
+        if(err) return callback(err),
+        callback(null, isMatch)
+    })
+}
+
+userSchema.methods.generateToken = function(callback) {
+    const user = this;
+    //Json Web Token을 이용해서 Token 생성하기
+    const token = jwt.sign(user._id, 'secretToken');
+    user.token = token;
+    user.save(function(err, user) {
+        if(err) return callback(err)
+        callback(null, user)
+    })
+}
 
 module.exports = {
     User
