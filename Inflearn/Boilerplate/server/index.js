@@ -27,7 +27,11 @@ mongoose.connect(
     .catch(err => console.log(err));
 
 app.get('/', (req, res) => {
-    res.send('Hello World!!!')
+    res.send('Welcome to Serverside')
+})
+
+app.get('/api/landing', (req, res) => {
+    res.send('Welcome to Client. You are in Landing Page')
 })
 
 // Register Route 생성코드
