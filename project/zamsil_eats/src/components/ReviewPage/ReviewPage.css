@@ -32,6 +32,11 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+textarea {
+    resize: none;
+    border: none;
+  }
+
 select {
     background: none;
     outline: none;
