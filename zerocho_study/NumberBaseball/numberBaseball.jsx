@@ -2,11 +2,17 @@ const React = require("react"),
       {useRef, useState} = React;
 
 const NumberBaseball = () => {
-    const [number, setNumber] = useState(Math.floor(Math.random()*9)),
+    const [number, setNumber] = useState(''),
           [value, setValue] = useState(''),
-          [answer, setAnswer] = useState(''),
+          [answer, setAnswer] = getNumbers(),
           [result, setResult] = useState(''),
           inputRef = useRef(null);
+
+      
+    const getNumbers = () => {
+      console.log(Math.floor(Math.random()*9));
+    }
+    getNumbers();
 
     const onSubmitInput = (e) => {
         e.preventDefault();
@@ -23,7 +29,8 @@ const NumberBaseball = () => {
             <form onSubmit={onSubmitInput}>
                 <input type="number" ref={inputRef} value={value} onChange={onChangeInput} placeholder="숫자를 입력해주세요." />
                 <button> 입력 </button>
-                <div>{result}</div>
+                <div>value : 1</div>
+                <div>result : {result}</div>
             </form>
         </>
     );
