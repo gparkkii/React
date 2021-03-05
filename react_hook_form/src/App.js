@@ -1,18 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
 import './App.css';
 
 function App() {
-  const { register, handleSubmit, watch, errors } = useForm();
-  const password = useRef();
-  password.current = watch("password");
-  const onSubmit = (data) => {
+  const { register, handleSubmit, watch, errors } = useForm({mode: 'onBlur'});
+  const [CheckId, setCheckId] = useState(true);
+
+  const onSubmit = (data,event) => {
+    event.target.reset();
     console.log(data);
     // axios.post(`/api/`,data)
   };
+
+  const password = useRef();
+  password.current = watch("password");
+
   // watch는 input에 들어오는 입력값을 onchange처럼 실시간으로 볼 수 있다.
-  console.log(watch("email"));
+  // console.log(watch("email"));
 
   return (
     <>
@@ -26,10 +31,16 @@ function App() {
           placeholder="이메일을 입력해주세요."
           ref={register({ 
             required: true, 
-            pattern: /^\S+@\S+$/i
+            pattern: /^\S+@\S+$/i,
+            validate: value => CheckId
           })} 
         />
-        {errors.email && <p>이메일을 입력해주세요.</p>}
+        {errors.email && errors.email.type === 'required'
+          && <p>이메일을 입력해주세요.</p>}
+        {errors.email && errors.email.type === 'pattern'
+        && <p>이메일을 형식이 옳바르지 않습니다.</p>}
+        {errors.email && errors.email.type === 'validate'
+          && <p>이미 가입된 이메일입니다.</p>}
 
         {/******************* 이름 *******************/}
         <label>이름</label>
@@ -38,7 +49,7 @@ function App() {
           placeholder="이름을 입력해주세요."
           ref={register({ 
             required: true, 
-            maxLength: 10 
+            maxLength: 10,
           })}
         />
         {errors.name && errors.name.type === 'required' 
