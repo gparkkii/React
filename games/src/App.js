@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route, Switch } from "react-router-dom";
+import styled from 'styled-components';
+import LandingPage from './pages/LandingPage';
+import NumberBaseball from './pages/NumberBaseball';
+import Header from './components/common/Header';
+import Omok from './pages/Omok';
+
+const BodyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 80vh;
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header/>
+      <BodyContainer>
+        <Switch>
+          <Route exact path='/' component={LandingPage}/>
+          <Route exact path='/numberbaseball' component={NumberBaseball}/>
+          <Route exact path='/omok' component={Omok}/>
+        </Switch>
+      </BodyContainer>
+    </>
   );
 }
 
