@@ -12,11 +12,14 @@ function LandingPage() {
     <div>
       <h2>Welcome to Game Center</h2>
       <FlexBox>
-        <Link to={'/numberbaseball'}>
-          <button>NumberBaseball</button>
+        <Link to={'/minesweeper'}>
+          <button>MineSweeper</button>
         </Link>
         <Link to={'/omok'}>
           <button>Omok</button>
+        </Link>
+        <Link to={'/numberbaseball'}>
+          <button>NumberBaseball</button>
         </Link>
       </FlexBox>
     </div>
